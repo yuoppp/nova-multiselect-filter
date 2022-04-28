@@ -5,7 +5,7 @@ namespace OptimistDigtal\NovaMultiselectFilter;
 
 use Illuminate\Container\Container;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Http\Request;
+use Laravel\Nova\Http\Requests\NovaRequest;
 use Laravel\Nova\Filters\Filter;
 
 abstract class MultiselectFilter extends Filter
@@ -15,12 +15,12 @@ abstract class MultiselectFilter extends Filter
     /**
      * Apply the filter to the given query.
      *
-     * @param Request $request
+     * @param NovaRequest $request
      * @param Builder $query
      * @param $value
      * @return Builder
      */
-    public function apply(Request $request, $query, $value)
+    public function apply(NovaRequest $request, $query, $value)
     {
         return $query;
     }
@@ -28,10 +28,10 @@ abstract class MultiselectFilter extends Filter
     /**
      * Get the filter's options.
      *
-     * @param Request $request
+     * @param NovaRequest $request
      * @return array|callable
      */
-    public function options(Request $request)
+    public function options(NovaRequest $request)
     {
         return [];
     }
@@ -140,7 +140,7 @@ abstract class MultiselectFilter extends Filter
             'class' => $this->key(),
             'name' => $this->name(),
             'component' => $this->component(),
-            'options' => $this->getFormattedOptions(Container::getInstance(), Request::class),
+            'options' => $this->getFormattedOptions(Container::getInstance(), NovaRequest::class),
             'currentValue' => $this->default() ?? '',
         ], $this->meta());
     }
