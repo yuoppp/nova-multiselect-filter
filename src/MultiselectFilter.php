@@ -131,10 +131,9 @@ abstract class MultiselectFilter extends Filter
     /**
      * Prepare the filter for JSON serialization.
      *
-     * @return array
+     * @return array<string, mixed>
      */
-    public
-    function jsonSerialize()
+    public function jsonSerialize(): array
     {
         return array_merge([
             'class' => $this->key(),
